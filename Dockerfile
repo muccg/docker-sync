@@ -14,10 +14,12 @@ RUN env --unset=DEBIAN_FRONTEND
 
 RUN pip install awscli
 
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+
 WORKDIR /data
 USER ccg-user
 ENV HOME /data
 
 VOLUME ["/data"]
 
-CMD /bin/sh
+ENTRYPOINT ["/docker-entrypoint.sh"]
