@@ -41,10 +41,10 @@ if [ "$1" = 's3' ]; then
 
     ec2_defaults
 
-    COMMAND="aws s3 sync ${SYNC_OPTS} ${SYNC_SOURCE} ${SYNC_DEST}"
-    echo "${COMMAND}"
     set -o pipefail
-    `${COMMAND}` 2>&1 | tee /data/sync.log
+    set -x
+    aws s3 sync ${SYNC_OPTS} ${SYNC_SOURCE} ${SYNC_DEST} 2>&1 | tee /data/sync.log
+    aws s3 sync ${SYNC_OPTS} sync.log ${SYNC_DEST}
     exit $?
 fi
 
