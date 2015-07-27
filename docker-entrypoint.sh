@@ -44,7 +44,7 @@ if [ "$1" = 's3' ]; then
     set -o pipefail
     set -x
     aws s3 sync ${SYNC_OPTS} ${SYNC_SOURCE} ${SYNC_DEST} 2>&1 | tee /data/sync.log
-    aws s3 sync sync.log ${SYNC_DEST}/sync.log
+    aws s3 sync sync.log ${SYNC_DEST}sync.log
     exit $?
 fi
 
